@@ -1,0 +1,62 @@
+#pragma once
+
+#include"../Utility/Vector2D.h"
+
+enum {
+	PLAYER,
+	ENEMY,
+	BOMB,
+
+	HARPY,
+	GOLDENEMY,
+	WINGENEMY,
+	EnemyBomb,
+};
+
+//ゲームオブジェクト基底クラス
+class GameObject
+{
+
+
+protected:
+	Vector2D location;      //位置情報
+
+	Vector2D box_size;   //矩形の大きさ
+
+	double scale;           //大きさ
+	double radian;          //向き
+	double Bombradian;   //ボムの向き
+	int image;              //描画する画像
+	int sound;              //再生する音源
+
+	int flip_flag;   //画像反転フラグ
+
+	int type;   //オブジェクトのタイプ
+
+public:   //公共
+	GameObject();
+	virtual ~GameObject();
+
+	virtual void Initialize();      //初期化処理
+	virtual void Update();          //更新処理
+	virtual void Draw() const;      //描画処理
+	virtual void Finalize();        //終了処理
+
+	//当たり判定通知処理
+	virtual void OnHitCollision(GameObject* hit_object);
+
+	//位置情報取得処理
+	Vector2D GetLocation() const;
+	//位置情報変更処理
+	void SetLocation(const Vector2D& location);
+
+	//当たり判定の大きさを取得する
+	Vector2D GetBoxSize() const;
+
+	bool flag;   //フラグ用
+
+	int GetType();   //自身のタイプの取得
+
+	void SetRadian(double radian);   //半径の取得
+};
+
