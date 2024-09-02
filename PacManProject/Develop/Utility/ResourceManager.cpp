@@ -128,7 +128,7 @@ void ResourceManager::UnLoadSounds()
 		return;
 	}
 	
-	// 全ての画像を削除
+	// 全ての音源を削除
 	for (std::pair<std::string, int> value : sounds_container)
 	{
 		DeleteSoundMem(value.second);

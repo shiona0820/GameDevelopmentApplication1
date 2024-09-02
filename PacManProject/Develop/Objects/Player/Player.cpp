@@ -4,6 +4,8 @@
 #include "DxLib.h"
 #include "../Food/Food.h"
 
+#include"../Enemy/EnemyBase.h"
+
 #define D_PLAYER_SPEED	(50.0f)
 
 Player::Player() :
@@ -34,7 +36,7 @@ void Player::Initialize()
 	ResourceManager* rm = ResourceManager::GetInstance();
 	move_animation = rm->GetImages("Resource/Images/pacman.png", 12, 12, 1, 32, 32);
 	dying_animation = rm->GetImages("Resource/Images/dying.png", 11, 11, 1, 32, 32);
-
+	
 	// 当たり判定の設定
 	collision.is_blocking = true;
 	collision.object_type = eObjectType::player;
@@ -134,6 +136,7 @@ void Player::OnHitCollision(GameObjectBase* hit_object)
 	if(hit_object->GetCollision().object_type == eObjectType::food)
 	{
 		food_count++;
+		
 	}
 
 	// 当たった、オブジェクトがパワー餌だったら
@@ -148,6 +151,7 @@ void Player::OnHitCollision(GameObjectBase* hit_object)
 	{
 		player_state = ePlayerState::DIE;
 	}
+
 }
 
 /// <summary>

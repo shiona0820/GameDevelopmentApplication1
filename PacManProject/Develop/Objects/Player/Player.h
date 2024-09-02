@@ -32,7 +32,7 @@ private:
 	std::vector<int> dying_animation;		// 死亡のアニメーション画像
 	Vector2D old_location;					// 前回のlocation
 	Vector2D velocity;						// 移動量
-	ePlayerState player_state;				// プレイヤー状態
+	
 	eDirectionState now_direction_state;	// 現在進行方向状態
 	eDirectionState next_direction_state;	// 次回進行方向状態
 	int food_count;							// 餌を食べた数
@@ -44,6 +44,9 @@ private:
 
 	// 移動アニメーションの順番
 	const int animation_num[4] = { 0, 1, 2, 1, };
+
+public:
+	ePlayerState player_state;				// プレイヤー状態
 
 public:
 	Player();
@@ -102,4 +105,5 @@ private:
 	/// </summary>
 	/// <param name="delta_second">1フレームあたりの時間</param>
 	void AnimationControl(float delta_second);
+
 };
